@@ -1,26 +1,206 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #FFFFFF;
+  --color-foreground: #071A2D;
+  --color-surface: #F8FAFC;
+  --color-surface-secondary: #F1F5F9;
+  --color-surface-card: #FFFFFF;
+  --color-surface-card-hover: #F8FAFC;
+  
+  --color-navy-950: #071A2D;
+  --color-navy-900: #0A2342;
+  --color-navy-800: #10345A;
+  --color-navy-700: #174A7C;
+  
+  --color-text-primary: #071A2D;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+  --color-text-on-dark: #F8FAFC;
+  --color-text-on-dark-secondary: #CBD5E1;
+  --color-text-on-dark-muted: #94A3B8;
+  
+  --color-orange: #F97316;
+  --color-orange-dark: #EA580C;
+  --color-orange-light: #FB923C;
+  
+  --color-border-light: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+  --color-border-accent: rgba(249, 115, 22, 0.4);
+  
+  --color-off-white: #F8FAFC;
+  --color-soft-white: #F1F5F9;
+
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFFFFF;
+  --foreground: #071A2D;
+  
+  --navy-950: #071A2D;
+  --navy-900: #0A2342;
+  --navy-800: #10345A;
+  --navy-700: #174A7C;
+  --navy-footer: #050F1C;
+  
+  --orange: #F97316;
+  --orange-dark: #EA580C;
+  --orange-light: #FB923C;
+  
+  --white: #FFFFFF;
+  --off-white: #F8FAFC;
+  --soft-white: #F1F5F9;
+  
+  --text-primary: #071A2D;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  
+  --text-on-dark: #F8FAFC;
+  --text-on-dark-secondary: #CBD5E1;
+  --text-on-dark-muted: #94A3B8;
+  
+  --border-light: #E2E8F0;
+  --border-hover: #CBD5E1;
+  --border-accent: rgba(249, 115, 22, 0.4);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  selection-background-color: rgba(249, 115, 22, 0.15);
+  selection-color: #071A2D;
+}
+
+/* Editorial display typography helper */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Restrained architectural lines & dividers */
+.hairline-b {
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.hairline-t {
+  border-top: 1px solid #E2E8F0;
+}
+
+.hairline-dark-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-dark-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Architectural Card styles — no glow, no excessive rounding, clean hover state */
+.editorial-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.editorial-card:hover {
+  border-color: #CBD5E1;
+}
+
+.editorial-card-dark {
+  background-color: #071A2D;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease;
+}
+
+.editorial-card-dark:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+/* Refined Link Underline Animation — grows smoothly from left */
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #F97316;
+  transition: width 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-underline:hover::after,
+.nav-underline.is-active::after {
+  width: 100%;
+}
+
+/* Micro-interaction: Controlled arrow nudge */
+.arrow-nudge {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .arrow-nudge {
+  transform: translateX(3px);
+}
+
+/* Subtle architectural grid pattern — minimal, non-distracting */
+.bg-subtle-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(7, 26, 45, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(7, 26, 45, 0.03) 1px, transparent 1px);
+}
+
+.bg-subtle-grid-dark {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Editorial scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Accessible focus visible rings */
+:focus-visible {
+  outline: 2px solid #F97316;
+  outline-offset: 3px;
+}
+
+/* Strict prefers-reduced-motion reset */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
