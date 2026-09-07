@@ -21,6 +21,7 @@ export function SectionHeading({
   sectionIndex,
   sectionNumber,
   eyebrow,
+  eyebrowBadge,
   title,
   titleHighlight,
   description,
@@ -78,14 +79,27 @@ export function SectionHeading({
             />
           )}
           {eyebrow && (
-            <span
-              className={cn(
-                "text-[11px] font-mono uppercase tracking-widest font-semibold",
-                onDark ? "text-[#94A3B8]" : "text-[#64748B]"
-              )}
-            >
-              {eyebrow}
-            </span>
+            eyebrowBadge ? (
+              <span
+                className={cn(
+                  "inline-flex items-center px-2 py-0.5 rounded-[2px] text-[10px] font-mono uppercase tracking-wider font-semibold",
+                  onDark
+                    ? "bg-white/[0.08] text-[#CBD5E1] border border-white/15"
+                    : "bg-[#071A2D]/5 text-[#334155] border border-[#E2E8F0]"
+                )}
+              >
+                {eyebrow}
+              </span>
+            ) : (
+              <span
+                className={cn(
+                  "text-[11px] font-mono uppercase tracking-widest font-semibold",
+                  onDark ? "text-[#94A3B8]" : "text-[#64748B]"
+                )}
+              >
+                {eyebrow}
+              </span>
+            )
           )}
         </div>
       )}

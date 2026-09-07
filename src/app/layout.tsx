@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScrollProvider } from "@/components/providers/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,12 +72,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-[#071A2D]">
-        <Header />
-        <main className="flex-1 pt-[72px]">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <Header />
+          <main className="flex-1 pt-[72px]">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

@@ -20,7 +20,8 @@ export function Footer() {
                     alt="Nexora AI Academy"
                     width={28}
                     height={28}
-                    className="w-7 h-7 object-contain transition-transform group-hover:scale-105"
+                    style={{ width: "auto", height: "auto" }}
+                    className="max-h-7 max-w-7 object-contain transition-transform group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-col">

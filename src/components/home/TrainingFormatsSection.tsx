@@ -1,9 +1,16 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { FORMATS_DATA } from "@/data/formats";
 import { FormatCard } from "./FormatCard";
+import {
+  ScrollReveal,
+  StaggerReveal,
+  StaggerItem,
+} from "@/components/ui/ScrollReveal";
 
 export function TrainingFormatsSection() {
   return (
@@ -12,22 +19,26 @@ export function TrainingFormatsSection() {
         {/* Header: Split Editorial Composition */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end pb-10 mb-10 border-b border-white/10">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-xs font-mono font-bold tracking-widest text-[#F97316] uppercase">
-                03 // DELIVERY FORMATS
-              </span>
-              <span className="w-1 h-1 bg-white/20" />
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#94A3B8] font-semibold">
-                OPERATIONAL MODELS
-              </span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display tracking-tight text-white leading-[1.12]">
-              How We Deliver{" "}
-              <span className="italic text-[#F97316]">Training.</span>
-            </h2>
+            <ScrollReveal animation="fade-up">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-xs font-mono font-bold tracking-widest text-[#F97316] uppercase">
+                  03 // DELIVERY FORMATS
+                </span>
+                <span className="w-1 h-1 bg-white/20" />
+                <span className="text-[11px] font-mono uppercase tracking-widest text-[#94A3B8] font-semibold">
+                  OPERATIONAL MODELS
+                </span>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal animation="fade-up" delay={0.1}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-display tracking-tight text-white leading-[1.12]">
+                How We Deliver{" "}
+                <span className="italic text-[#F97316]">Training.</span>
+              </h2>
+            </ScrollReveal>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <ScrollReveal animation="fade-up" delay={0.15} className="lg:col-span-5 flex flex-col justify-between">
             <p className="text-sm sm:text-base text-[#CBD5E1] leading-relaxed mb-4 font-normal">
               Whether you need a rapid, single-session immersion or a multi-month institutional transformation, our training formats are engineered around your operational schedule and capability targets.
             </p>
@@ -38,15 +49,17 @@ export function TrainingFormatsSection() {
               <span>Discuss customized delivery options with our directors</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#F97316]" />
             </Link>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* 4-Column Architectural Register */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[3px] overflow-hidden bg-[#071A2D]">
+        <StaggerReveal stagger={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[3px] overflow-hidden bg-[#071A2D]">
           {FORMATS_DATA.map((format, idx) => (
-            <FormatCard key={format.id} format={format} index={idx} />
+            <StaggerItem key={format.id} animation="fade-up">
+              <FormatCard format={format} index={idx} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerReveal>
       </SectionContainer>
     </section>
   );
